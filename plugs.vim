@@ -26,5 +26,10 @@ call plug#begin('~/.vim/plugged')
   Plug 'f-person/git-blame.nvim'
 
   "File tree
+  Plug 'kyazdani42/nvim-web-devicons'
   Plug 'kyazdani42/nvim-tree.lua'
+
+  "Statusline
+  Plug 'nvim-lualine/lualine.nvim'
+  Plug 'akinsho/bufferline.nvim'
 call plug#end()
