@@ -2,8 +2,10 @@ local util = require('lspconfig/util')
 
 local M = {}
 
+NVM = vim.fn.expand('$NVM_BIN'):gsub('/bin', '')
+
 local function get_typescript_server_path()
-  local ts_path = os.getenv('TSSERVERLIBRARY')
+  local ts_path = util.path.join(NVM, 'lib', 'node_modules', 'typescript', 'lib', 'tsserverlibrary.js')
   return ts_path
 end
 
