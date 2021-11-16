@@ -5,8 +5,9 @@ local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protoco
 local null_ls = require("null-ls")
 
 local volar = require('config.volar');
+local lua_config = require('config.lua')
 
-local js_attach = function(client, buffnr)
+local js_attach = function(client)
   local ts_utils = require('nvim-lsp-ts-utils')
 
   client.resolved_capabilities.document_formatting = false
@@ -27,10 +28,12 @@ lspconfig['tsserver'].setup {
   capabilities = capabilities,
   on_attach = js_attach
 }
-  
+
 null_ls.config({})
 lspconfig["null-ls"].setup({})
 
 configs['volar'] = volar.config
 
 lspconfig.volar.setup {}
+
+lspconfig.sumneko_lua.setup(lua_config.config)

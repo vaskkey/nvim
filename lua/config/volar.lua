@@ -2,9 +2,9 @@ local util = require('lspconfig/util')
 
 local M = {}
 
-local function get_typescript_server_path(root_dir)
+local function get_typescript_server_path()
   local ts_path = os.getenv('TSSERVERLIBRARY')
-  return ts_path 
+  return ts_path
 end
 
 local bin_name = 'volar-server'
@@ -52,13 +52,13 @@ M.config = {
     filetypes = { 'vue' },
     root_dir = util.root_pattern 'package.json',
     init_options = volar_init_options,
-    on_new_config = function(new_config, new_root_dir)
+    on_new_config = function(new_config)
       if
         new_config.init_options
         and new_config.init_options.typescript
         and new_config.init_options.typescript.serverPath == ''
       then
-        new_config.init_options.typescript.serverPath = get_typescript_server_path(new_root_dir)
+        new_config.init_options.typescript.serverPath = get_typescript_server_path()
       end
     end,
   },
