@@ -23,17 +23,28 @@ local js_attach = function(client)
   ts_utils.setup_client(client)
 end
 
+local sources = {
+    null_ls.builtins.formatting.eslint_d,
+    null_ls.builtins.diagnostics.eslint_d
+}
+
 
 lspconfig['tsserver'].setup {
   capabilities = capabilities,
   on_attach = js_attach
 }
 
-null_ls.config({})
+null_ls.config {
+  sources = sources
+}
+
 lspconfig["null-ls"].setup({})
 
 configs['volar'] = volar.config
 
-lspconfig.volar.setup {}
+lspconfig.volar.setup {
+  capabilities = capabilities,
+  on_attach = js_attach
+}
 
 lspconfig.sumneko_lua.setup(lua_config.config)

@@ -3,6 +3,7 @@ local M = {}
 USER = vim.fn.expand('$USER')
 local sumneko_root_path = ""
 local sumneko_binary = ""
+local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 if vim.fn.has("mac") == 1 then
     sumneko_root_path = "/Users/" .. USER .. "/lua-language-server"
@@ -16,6 +17,7 @@ end
 
 M.config = {
     cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"},
+    capabilities= capabilities,
     settings = {
         Lua = {
             runtime = {
