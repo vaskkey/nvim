@@ -8,8 +8,17 @@ nnoremap <leader>gi <cmd>lua vim.lsp.buf.implementation()<CR>
 
 nnoremap <leader>w <cmd>bd<cr>
 
+nnoremap <leader>y "*y<cr>
+
 nnoremap <leader>nt <cmd>NvimTreeToggle<CR>
 nnoremap <leader>nr <cmd>NvimTreeRefresh<CR>
 nnoremap <leader>nf <cmd>NvimTreeFindFile<CR>
 
 nnoremap <leader>f <cmd>lua vim.lsp.buf.formatting()<CR>
+
+" Autoclose
+inoremap " ""<left>
+inoremap ' ''<left>
+inoremap ( ()<left>
+inoremap [ []<left>
+inoremap { {}<left>
