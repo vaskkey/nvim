@@ -49,3 +49,16 @@ lspconfig.volar.setup {
 }
 
 lspconfig.sumneko_lua.setup(lua_config.config)
+
+configs.emmet_ls = {
+    default_config = {
+      cmd = {'emmet-ls', '--stdio'};
+      filetypes = {'html', 'css', 'blade'};
+      root_dir = function()
+        return vim.loop.cwd()
+      end;
+      settings = {};
+    };
+  }
+
+lspconfig.emmet_ls.setup{ capabilities = capabilities; }
