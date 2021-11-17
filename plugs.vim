@@ -5,7 +5,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'nvim-telescope/telescope.nvim'
 
   "Colorscheme
-  Plug 'morhetz/gruvbox'
+  Plug 'wojciechkepka/vim-github-dark'
 
   "ember
   Plug 'joukevandermaas/vim-ember-hbs'
@@ -22,8 +22,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'L3MON4D3/LuaSnip'
   Plug 'hrsh7th/nvim-cmp'
 
-  "line blame
-  Plug 'f-person/git-blame.nvim'
+  " Git
+  Plug 'lewis6991/gitsigns.nvim'
 
   "File tree
   Plug 'kyazdani42/nvim-web-devicons'

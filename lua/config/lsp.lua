@@ -18,12 +18,13 @@ local js_attach = function(client)
     eslint_enable_diagnostics = true,
     eslint_enable_code_actions = true,
     enable_formatting = true,
-    formatter = "prettier"
+    formatter = "prettierd"
   })
   ts_utils.setup_client(client)
 end
 
 local sources = {
+    null_ls.builtins.formatting.prettierd,
     null_ls.builtins.formatting.eslint_d,
     null_ls.builtins.diagnostics.eslint_d
 }
