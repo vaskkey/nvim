@@ -1,12 +1,12 @@
-require'nvim-web-devicons'.setup {
- override = {
-  zsh = {
-    icon = "",
-    color = "#428850",
-    name = "Zsh"
-  }
- };
- default = true;
-}
+require("nvim-web-devicons").setup({
+	override = {
+		zsh = {
+			icon = "",
+			color = "#428850",
+			name = "Zsh",
+		},
+	},
+	default = true,
+})
 
-require'nvim-tree'.setup()
+require("nvim-tree").setup()

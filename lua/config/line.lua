@@ -1,2 +1,2 @@
-require('lualine').setup()
-require("bufferline").setup{}
+require("lualine").setup()
+require("bufferline").setup({})
