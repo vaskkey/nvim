@@ -4,7 +4,7 @@ local configs = require("lspconfig/configs")
 local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
 local null_ls = require("null-ls")
 
-local volar = require("config.volar")
+local volar_config = require("config.volar")
 local lua_config = require("config.lua")
 
 local js_attach = function(client)
@@ -41,7 +41,7 @@ null_ls.config({
 
 lspconfig["null-ls"].setup({})
 
-configs["volar"] = volar.config
+configs["volar"] = volar_config
 
 lspconfig.volar.setup({
 	capabilities = capabilities,
@@ -62,3 +62,16 @@ configs.emmet_ls = {
 }
 
 lspconfig.emmet_ls.setup({ capabilities = capabilities })
+
+lspconfig.gopls.setup({
+	capabilities = capabilities,
+	cmd = { "gopls", "serve" },
+	settings = {
+		gopls = {
+			analyses = {
+				unusedparams = true,
+			},
+			staticcheck = true,
+		},
+	},
+})

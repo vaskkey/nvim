@@ -1,6 +1,17 @@
 -- Setup nvim-cmp.
 local cmp = require("cmp")
 
+local source_mapping = {
+	buffer = "[Buffer]",
+	nvim_lsp = "[LSP]",
+	nvim_lua = "[Lua]",
+	path = "[Path]",
+}
+local lspkind = require("lspkind")
+require("lspkind").init({
+	with_text = true,
+})
+
 cmp.setup({
 	snippet = {
 		expand = function(args)
@@ -17,6 +28,14 @@ cmp.setup({
 			c = cmp.mapping.close(),
 		}),
 		["<CR>"] = cmp.mapping.confirm({ select = true }),
+	},
+	formatting = {
+		format = function(entry, vim_item)
+			vim_item.kind = lspkind.presets.default[vim_item.kind]
+			local menu = source_mapping[entry.source.name]
+			vim_item.menu = menu
+			return vim_item
+		end,
 	},
 	sources = cmp.config.sources({
 		{ name = "nvim_lsp" },

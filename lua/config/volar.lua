@@ -1,7 +1,5 @@
 local util = require("lspconfig/util")
 
-local M = {}
-
 NVM = vim.fn.expand("$NVM_BIN"):gsub("/bin", "")
 
 local function get_typescript_server_path()
@@ -48,7 +46,7 @@ local volar_init_options = {
 	},
 }
 
-M.config = {
+local config = {
 	default_config = {
 		cmd = { bin_name, "--stdio" },
 		filetypes = { "vue" },
@@ -66,4 +64,4 @@ M.config = {
 	},
 }
 
-return M
+return config
