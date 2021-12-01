@@ -1,6 +1,6 @@
 set termguicolors
 set background=dark
-colorscheme ghdark
+colorscheme monokai_pro
 
 set updatetime=50
 

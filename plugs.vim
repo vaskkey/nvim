@@ -5,10 +5,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'nvim-telescope/telescope.nvim'
 
   "Colorscheme
-  Plug 'wojciechkepka/vim-github-dark'
-
-  "ember
-  Plug 'joukevandermaas/vim-ember-hbs'
+  Plug 'phanviet/vim-monokai-pro'
 
   "Treesitter
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
