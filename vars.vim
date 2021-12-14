@@ -1,6 +1,6 @@
 set termguicolors
 set background=dark
-colorscheme monokai_pro
+colorscheme gruvbox
 
 set updatetime=50
 

@@ -5,7 +5,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'nvim-telescope/telescope.nvim'
 
   "Colorscheme
-  Plug 'phanviet/vim-monokai-pro'
+  Plug 'morhetz/gruvbox'
 
   "Treesitter
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
