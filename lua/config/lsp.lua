@@ -1,5 +1,5 @@
 local lspconfig = require("lspconfig")
-local configs = require("lspconfig/configs")
+local configs = require("lspconfig.configs")
 
 local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
 local null_ls = require("null-ls")
@@ -22,25 +22,34 @@ local js_attach = function(client)
 	ts_utils.setup_client(client)
 end
 
+local signs = {
+	{ name = "DiagnosticSignError", text = "" },
+	{ name = "DiagnosticSignWarn", text = "" },
+	{ name = "DiagnosticSignHint", text = "" },
+	{ name = "DiagnosticSignInfo", text = "" },
+}
+
+for _, sign in ipairs(signs) do
+	vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
+end
+
 local sources = {
-	null_ls.builtins.formatting.prettierd,
+  null_ls.builtins.diagnostics.eslint,
+	null_ls.builtins.formatting.eslint,
 	null_ls.builtins.formatting.stylua,
 }
 
-lspconfig["tsserver"].setup({
-	capabilities = capabilities,
-	on_attach = js_attach,
-})
 
-null_ls.config({
+null_ls.setup({
 	sources = sources,
 })
 
-lspconfig["null-ls"].setup({})
+lspconfig["tsserver"].setup({
+	capabilities = capabilities,
+})
 
 lspconfig.vuels.setup({
 	capabilities = capabilities,
-	on_attach = js_attach,
 })
 
 lspconfig.sumneko_lua.setup(lua_config.config)

@@ -15,7 +15,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'hrsh7th/cmp-nvim-lsp'
   Plug 'hrsh7th/cmp-buffer'
   Plug 'jose-elias-alvarez/null-ls.nvim'
-  Plug 'jose-elias-alvarez/nvim-lsp-ts-utils'
   Plug 'L3MON4D3/LuaSnip'
   Plug 'saadparwaiz1/cmp_luasnip'
   Plug 'hrsh7th/nvim-cmp'
