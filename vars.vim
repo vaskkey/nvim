@@ -18,7 +18,7 @@ set nu
 set scrolloff=12
 
 set signcolumn=yes
-set colorcolumn=80
+set colorcolumn=120
 
 "Search
 set nohlsearch

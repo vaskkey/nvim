@@ -6,22 +6,6 @@ local null_ls = require("null-ls")
 
 local lua_config = require("config.lua")
 
-local js_attach = function(client)
-	local ts_utils = require("nvim-lsp-ts-utils")
-
-	client.resolved_capabilities.document_formatting = false
-	client.resolved_capabilities.document_range_formatting = false
-
-	ts_utils.setup({
-		eslint_bin = "eslint_d",
-		eslint_enable_diagnostics = true,
-		eslint_enable_code_actions = true,
-		enable_formatting = true,
-		formatter = "prettierd",
-	})
-	ts_utils.setup_client(client)
-end
-
 local signs = {
 	{ name = "DiagnosticSignError", text = "" },
 	{ name = "DiagnosticSignWarn", text = "" },
@@ -39,7 +23,6 @@ local sources = {
 	null_ls.builtins.formatting.stylua,
 }
 
-
 null_ls.setup({
 	sources = sources,
 })
@@ -47,6 +30,8 @@ null_ls.setup({
 lspconfig["tsserver"].setup({
 	capabilities = capabilities,
 })
+
+lspconfig.tailwindcss.setup({})
 
 lspconfig.vuels.setup({
 	capabilities = capabilities,
