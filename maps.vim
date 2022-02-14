@@ -20,6 +20,9 @@ nnoremap <leader>w <cmd>bd<cr>
 nnoremap <leader>y "*y<cr>
 vnoremap <leader>y "*y<cr>
 
+nnoremap <BS> "_d
+vnoremap <BS> "_d
+
 nnoremap <leader>nt <cmd>NvimTreeToggle<CR>
 nnoremap <leader>nr <cmd>NvimTreeRefresh<CR>
 nnoremap <leader>nf <cmd>NvimTreeFindFile<CR>
