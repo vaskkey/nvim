@@ -1,7 +1,7 @@
 local lspconfig = require("lspconfig")
 local configs = require("lspconfig.configs")
 
-local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
+local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 local null_ls = require("null-ls")
 
 local lua_config = require("config.lua")
@@ -18,7 +18,7 @@ for _, sign in ipairs(signs) do
 end
 
 local sources = {
-  null_ls.builtins.diagnostics.eslint,
+	null_ls.builtins.diagnostics.eslint,
 	null_ls.builtins.formatting.eslint,
 	null_ls.builtins.formatting.stylua,
 }
@@ -35,14 +35,26 @@ lspconfig.tailwindcss.setup({})
 
 lspconfig.vuels.setup({
 	capabilities = capabilities,
+	settings = {
+		vetur = {
+			validation = {
+				style = false,
+			},
+			completion = {
+				tagCasing = "initial",
+			},
+		},
+	},
 })
 
 lspconfig.sumneko_lua.setup(lua_config.config)
 
+lspconfig.solargraph.setup({})
+
 configs.emmet_ls = {
 	default_config = {
 		cmd = { "emmet-ls", "--stdio" },
-		filetypes = { "html", "css", "blade" },
+		filetypes = { "html", "css", "blade", "erb" },
 		root_dir = function()
 			return vim.loop.cwd()
 		end,
