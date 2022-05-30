@@ -8,6 +8,7 @@ nnoremap <leader>gf <cmd>lua require'telescope.builtin'.git_status{}<CR>
 nnoremap <leader>gs <cmd>Gitsigns stage_hunk<CR>
 nnoremap <leader>gp <cmd>Gitsigns preview_hunk<CR>
 nnoremap <leader>gr <cmd>Gitsigns reset_hunk<CR>
+nnoremap <leader>gh <cmd>Gitsigns blame_line<CR>
 
 nnoremap <leader>bf <cmd>lua vim.lsp.buf.formatting()<CR>
 nnoremap <leader>br :lua vim.lsp.buf.rename()<CR>
@@ -37,3 +38,9 @@ inoremap { {}<left>
 
 nnoremap <leader>] :BufferLineCycleNext<CR>
 nnoremap <leader>[ :BufferLineCyclePrev<CR>
+
+nnoremap <Tab> >>
+vnoremap <Tab> >gv
+
+nnoremap <S-Tab> <<
+vnoremap <S-Tab> <gv

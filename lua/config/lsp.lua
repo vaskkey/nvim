@@ -54,7 +54,7 @@ lspconfig.solargraph.setup({})
 configs.emmet_ls = {
 	default_config = {
 		cmd = { "emmet-ls", "--stdio" },
-		filetypes = { "html", "css", "blade", "erb" },
+		filetypes = { "html", "css", "blade", "eruby", "erb" },
 		root_dir = function()
 			return vim.loop.cwd()
 		end,

@@ -1,8 +1,8 @@
 -- Setup nvim-cmp.
 local cmp = require("cmp")
 local source_mapping = {
-	buffer = "[Buffer]",
 	nvim_lsp = "[LSP]",
+	buffer = "[Buffer]",
 	nvim_lua = "[Lua]",
 	path = "[Path]",
 }
