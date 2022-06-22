@@ -11,10 +11,14 @@ nnoremap <leader>gr <cmd>Gitsigns reset_hunk<CR>
 nnoremap <leader>gh <cmd>Gitsigns blame_line<CR>
 
 nnoremap <leader>bf <cmd>lua vim.lsp.buf.formatting()<CR>
-nnoremap <leader>br :lua vim.lsp.buf.rename()<CR>
-nnoremap <leader>bh :lua vim.lsp.buf.hover()<CR>
+nnoremap <leader>br <cmd>lua vim.lsp.buf.rename()<CR>
+nnoremap <leader>bh <cmd>lua vim.lsp.buf.hover()<CR>
 nnoremap <leader>bd <cmd>lua vim.lsp.buf.definition()<CR>
 nnoremap <leader>bi <cmd>lua vim.lsp.buf.implementation()<CR>
+nnoremap <leader>ba <cmd>lua vim.lsp.buf.code_action()<CR>
+
+nnoremap <leader>yt <cmd>terminal yarn test:unit % -u<CR>
+nnoremap <leader>yj <cmd>terminal yarn test:unit -u<CR>
 
 nnoremap <leader>w <cmd>bd<cr>
 

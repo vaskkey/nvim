@@ -7,11 +7,9 @@ local function get_typescript_server_path()
 	return ts_path
 end
 
-local bin_name = "volar-server"
-
 local volar_init_options = {
 	typescript = {
-		serverPath = "",
+		serverPath = get_typescript_server_path(),
 	},
 	languageFeatures = {
 		semanticTokens = false,
@@ -26,7 +24,7 @@ local volar_init_options = {
 		codeAction = true,
 		completion = {
 			defaultTagNameCase = "PascalCase",
-			defaultAttrNameCase = "camelCase",
+			defaultAttrNameCase = "kebabCase",
 		},
 		schemaRequestService = true,
 		documentHighlight = true,
@@ -41,27 +39,9 @@ local volar_init_options = {
 		linkedEditingRange = true,
 		documentSymbol = true,
 		documentFormatting = {
-			defaultPrintWidth = 80,
+			defaultPrintWidth = 120,
 		},
 	},
 }
 
-local config = {
-	default_config = {
-		cmd = { bin_name, "--stdio" },
-		filetypes = { "vue" },
-		root_dir = util.root_pattern("package.json"),
-		init_options = volar_init_options,
-		on_new_config = function(new_config)
-			if
-				new_config.init_options
-				and new_config.init_options.typescript
-				and new_config.init_options.typescript.serverPath == ""
-			then
-				new_config.init_options.typescript.serverPath = get_typescript_server_path()
-			end
-		end,
-	},
-}
-
-return config
+return volar_init_options
