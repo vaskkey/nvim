@@ -20,8 +20,8 @@ for _, sign in ipairs(signs) do
 end
 
 local sources = {
-	null_ls.builtins.diagnostics.eslint,
-	null_ls.builtins.formatting.eslint,
+	null_ls.builtins.diagnostics.eslint_d,
+	null_ls.builtins.formatting.eslint_d,
 	null_ls.builtins.formatting.stylua,
 }
 
@@ -50,7 +50,7 @@ lspconfig.solargraph.setup({
 configs.emmet_ls = {
 	default_config = {
 		cmd = { "emmet-ls", "--stdio" },
-		filetypes = { "html", "vue", "css", "blade", "eruby", "erb" },
+		filetypes = { "html", "css", "blade", "eruby", "erb" },
 		root_dir = function()
 			return vim.loop.cwd()
 		end,
