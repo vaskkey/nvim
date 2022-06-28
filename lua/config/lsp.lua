@@ -1,3 +1,4 @@
+local lsp_installer = require("nvim-lsp-installer")
 local lspconfig = require("lspconfig")
 local configs = require("lspconfig.configs")
 
@@ -24,6 +25,12 @@ local sources = {
 	null_ls.builtins.formatting.eslint_d,
 	null_ls.builtins.formatting.stylua,
 }
+
+lsp_installer.setup({
+  ensure_installed = {
+    'volar', 'tsserver', 'sumneko_lua', 'tailwindcss', 'solargraph', 'emmet_ls', 'gopls'
+  }
+})
 
 null_ls.setup({
 	sources = sources,
