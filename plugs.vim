@@ -5,7 +5,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'nvim-telescope/telescope.nvim'
 
   "Colorscheme
-  Plug 'dracula/vim', { 'as': 'dracula' }
+  Plug 'folke/tokyonight.nvim'
 
   "Treesitter
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
@@ -20,6 +20,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'saadparwaiz1/cmp_luasnip'
   Plug 'hrsh7th/nvim-cmp'
   Plug 'onsails/lspkind-nvim'
+  Plug 'folke/trouble.nvim'
 
   " Git
   Plug 'lewis6991/gitsigns.nvim'

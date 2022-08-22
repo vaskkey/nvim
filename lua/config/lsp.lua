@@ -23,13 +23,22 @@ end
 local sources = {
 	null_ls.builtins.diagnostics.eslint_d,
 	null_ls.builtins.formatting.eslint_d,
-	null_ls.builtins.formatting.stylua,
+	null_ls.builtins.code_actions.eslint_d,
+	null_ls.builtins.formatting.stylua
 }
 
 lsp_installer.setup({
-  ensure_installed = {
-    'volar', 'tsserver', 'sumneko_lua', 'tailwindcss', 'solargraph', 'emmet_ls', 'gopls'
-  }
+	ensure_installed = {
+		"volar",
+		"tsserver",
+		"sumneko_lua",
+		"tailwindcss",
+		"solargraph",
+		"emmet_ls",
+		"gopls",
+		"rust_analyzer",
+		"jsonls",
+	},
 })
 
 null_ls.setup({
@@ -40,12 +49,21 @@ lspconfig["tsserver"].setup({
 	capabilities = capabilities,
 })
 
-lspconfig.tailwindcss.setup({})
+lspconfig["rust_analyzer"].setup({
+	capabilities = capabilities,
+})
+
+lspconfig.tailwindcss.setup({
+	capabilities = capabilities,
+})
+lspconfig.jsonls.setup({
+	capabilities = capabilities,
+})
 
 lspconfig.volar.setup({
 	capabilities = capabilities,
 	filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue", "json" },
-  init_options = volar_init_options
+	init_options = volar_init_options,
 })
 
 lspconfig.sumneko_lua.setup(lua_config.config)

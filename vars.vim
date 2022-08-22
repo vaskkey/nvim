@@ -1,5 +1,6 @@
 set termguicolors
-colorscheme dracula
+let g:tokyonight_style = "night"
+colorscheme tokyonight
 
 set updatetime=50
 

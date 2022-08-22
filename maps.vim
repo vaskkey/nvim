@@ -17,6 +17,11 @@ nnoremap <leader>bd <cmd>lua vim.lsp.buf.definition()<CR>
 nnoremap <leader>bi <cmd>lua vim.lsp.buf.implementation()<CR>
 nnoremap <leader>ba <cmd>lua vim.lsp.buf.code_action()<CR>
 
+nnoremap <leader>td <cmd>TroubleToggle document_diagnostics<CR>
+nnoremap <leader>tw <cmd>TroubleToggle workspace_diagnostics<CR>
+nnoremap <leader>tr <cmd>TroubleToggle lsp_references<CR>
+nnoremap <leader>tq <cmd>TroubleToggle quickfix<CR>
+
 nnoremap <leader>yt <cmd>terminal yarn test:unit % -u<CR>
 nnoremap <leader>yj <cmd>terminal yarn test:unit -u<CR>
 
