@@ -25,8 +25,6 @@ nnoremap <leader>tq <cmd>TroubleToggle quickfix<CR>
 nnoremap <leader>yt <cmd>terminal yarn test:unit % -u<CR>
 nnoremap <leader>yj <cmd>terminal yarn test:unit -u<CR>
 
-nnoremap <leader>w <cmd>bd<cr>
-
 nnoremap <leader>y "*y<cr>
 vnoremap <leader>y "*y<cr>
 
@@ -45,8 +43,18 @@ inoremap ( ()<left>
 inoremap [ []<left>
 inoremap { {}<left>
 
-nnoremap <leader>] :BufferLineCycleNext<CR>
-nnoremap <leader>[ :BufferLineCyclePrev<CR>
+nnoremap <leader>w <cmd>bd<cr>
+nnoremap <silent><leader>1 <Cmd>BufferLineGoToBuffer 1<CR>
+nnoremap <silent><leader>2 <Cmd>BufferLineGoToBuffer 2<CR>
+nnoremap <silent><leader>3 <Cmd>BufferLineGoToBuffer 3<CR>
+nnoremap <silent><leader>4 <Cmd>BufferLineGoToBuffer 4<CR>
+nnoremap <silent><leader>5 <Cmd>BufferLineGoToBuffer 5<CR>
+nnoremap <silent><leader>6 <Cmd>BufferLineGoToBuffer 6<CR>
+nnoremap <silent><leader>7 <Cmd>BufferLineGoToBuffer 7<CR>
+nnoremap <silent><leader>8 <Cmd>BufferLineGoToBuffer 8<CR>
+nnoremap <silent><leader>9 <Cmd>BufferLineGoToBuffer 9<CR>
+nnoremap <leader>] <cmd>BufferLineCycleNext<CR>
+nnoremap <leader>[ <cmd>BufferLineCyclePrev<CR>
 
 nnoremap <Tab> >>
 vnoremap <Tab> >gv
