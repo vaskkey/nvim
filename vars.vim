@@ -1,6 +1,5 @@
 set termguicolors
-let g:tokyonight_style = "night"
-colorscheme tokyonight
+colorscheme tokyonight-night
 
 set updatetime=50
 
