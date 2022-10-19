@@ -1,8 +1,9 @@
-local lsp_installer = require("nvim-lsp-installer")
+local mason = require("mason")
+local mason_lsp = require("mason-lspconfig")
 local lspconfig = require("lspconfig")
 local configs = require("lspconfig.configs")
 
-local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
+local capabilities = require("cmp_nvim_lsp").default_capabilities()
 local null_ls = require("null-ls")
 
 local lua_config = require("config.lua")
@@ -24,13 +25,13 @@ local sources = {
 	null_ls.builtins.diagnostics.eslint_d,
 	null_ls.builtins.formatting.eslint_d,
 	null_ls.builtins.code_actions.eslint_d,
-	null_ls.builtins.formatting.stylua
+	null_ls.builtins.formatting.stylua,
 }
 
-lsp_installer.setup({
+mason.setup()
+mason_lsp.setup({
 	ensure_installed = {
 		"volar",
-		"tsserver",
 		"sumneko_lua",
 		"tailwindcss",
 		"solargraph",
@@ -43,10 +44,6 @@ lsp_installer.setup({
 
 null_ls.setup({
 	sources = sources,
-})
-
-lspconfig["tsserver"].setup({
-	capabilities = capabilities,
 })
 
 lspconfig["rust_analyzer"].setup({
