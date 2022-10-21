@@ -29,6 +29,7 @@ vim.opt.mouse = "a"
 
 vim.opt.completeopt = "menu,menuone,noselect"
 vim.g.completion_matching_strategy_list = {'exact', 'substring', 'fuzzy'}
+vim.cmd('set nohlsearch')
 
 local augroup = vim.api.nvim_create_augroup
 local autocmd = vim.api.nvim_create_autocmd
