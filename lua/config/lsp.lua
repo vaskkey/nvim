@@ -31,8 +31,9 @@ local sources = {
 mason.setup()
 mason_lsp.setup({
 	ensure_installed = {
+    "tsserver",
 		"volar",
-		"sumneko_lua",
+		"lua_ls",
 		"tailwindcss",
 		"solargraph",
 		"emmet_ls",
@@ -44,6 +45,10 @@ mason_lsp.setup({
 
 null_ls.setup({
 	sources = sources,
+})
+
+lspconfig.tsserver.setup({
+	capabilities = capabilities,
 })
 
 lspconfig["rust_analyzer"].setup({
@@ -60,10 +65,15 @@ lspconfig.jsonls.setup({
 lspconfig.volar.setup({
 	capabilities = capabilities,
 	filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue", "json" },
+  root_dir = lspconfig.util.root_pattern('vite.config.js'),
 	init_options = volar_init_options,
+  on_attach = function (client)
+    client.server_capabilities.documentFormattingProvider = false
+    client.server_capabilities.documentRangeFormattingProvider = false
+  end
 })
 
-lspconfig.sumneko_lua.setup(lua_config.config)
+lspconfig.lua_ls.setup(lua_config.config)
 
 lspconfig.solargraph.setup({
 	capabilities = capabilities,
@@ -72,7 +82,7 @@ lspconfig.solargraph.setup({
 configs.emmet_ls = {
 	default_config = {
 		cmd = { "emmet-ls", "--stdio" },
-		filetypes = { "html", "css", "blade", "eruby", "erb" },
+		filetypes = { "html", "css", "blade", "eruby", "erb", "gotmpl" },
 		root_dir = function()
 			return vim.loop.cwd()
 		end,
@@ -85,6 +95,7 @@ lspconfig.emmet_ls.setup({ capabilities = capabilities })
 lspconfig.gopls.setup({
 	capabilities = capabilities,
 	cmd = { "gopls", "serve" },
+  filetypes = { "go", "gomod", "gowork", "gotmpl" },
 	settings = {
 		gopls = {
 			analyses = {

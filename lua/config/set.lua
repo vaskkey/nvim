@@ -1,5 +1,5 @@
 vim.opt.termguicolors = true
-vim.cmd("colorscheme tokyonight-night")
+vim.cmd("colorscheme base16-gruvbox-dark-hard")
 
 vim.opt.updatetime = 50
 

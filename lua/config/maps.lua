@@ -21,6 +21,10 @@ nnoremap("<leader>gf", function()
   require("telescope.builtin").git_status({})
 end)
 
+nnoremap("<leader>s", function()
+  require("spectre").open_visual()
+end)
+
 nnoremap("<leader>gs", "<cmd>Gitsigns stage_hunk<CR>")
 nnoremap("<leader>gp", "<cmd>Gitsigns preview_hunk<CR>")
 nnoremap("<leader>gr", "<cmd>Gitsigns reset_hunk<CR>")
