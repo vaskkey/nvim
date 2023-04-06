@@ -5,14 +5,13 @@ local inoremap = keymaps.inoremap
 
 vim.g.mapleader = " "
 
+require('Comment').setup()
+
 nnoremap("<leader>p", function()
   require("telescope.builtin").git_files(require("telescope.themes").get_ivy({}))
 end)
 nnoremap("<leader>f", function()
   require("telescope.builtin").live_grep({})
-end)
-nnoremap("<leader>gp", function()
-  require("telescope.builtin").git_files(require("telescope.themes").get_ivy({}))
 end)
 nnoremap("<leader>gb", function()
   require("telescope.builtin").git_branches({})
@@ -29,6 +28,8 @@ nnoremap("<leader>gs", "<cmd>Gitsigns stage_hunk<CR>")
 nnoremap("<leader>gp", "<cmd>Gitsigns preview_hunk<CR>")
 nnoremap("<leader>gr", "<cmd>Gitsigns reset_hunk<CR>")
 nnoremap("<leader>gh", "<cmd>Gitsigns blame_line<CR>")
+nnoremap("<leader>gn", "<cmd>Gitsigns next_hunk<CR>")
+nnoremap("<leader>gN", "<cmd>Gitsigns prev_hunk<CR>")
 
 nnoremap("<leader>bf", function()
   vim.lsp.buf.format({ async = true })
