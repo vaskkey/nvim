@@ -5,8 +5,6 @@ local inoremap = keymaps.inoremap
 
 vim.g.mapleader = " "
 
-require('Comment').setup()
-
 nnoremap("<leader>p", function()
   require("telescope.builtin").git_files(require("telescope.themes").get_ivy({}))
 end)
@@ -31,22 +29,22 @@ nnoremap("<leader>gh", "<cmd>Gitsigns blame_line<CR>")
 nnoremap("<leader>gn", "<cmd>Gitsigns next_hunk<CR>")
 nnoremap("<leader>gN", "<cmd>Gitsigns prev_hunk<CR>")
 
-nnoremap("<leader>bf", function()
+nnoremap("<leader>fmt", function()
   vim.lsp.buf.format({ async = true })
 end)
-nnoremap("<leader>br", function()
+nnoremap("<leader>r", function()
   vim.lsp.buf.rename()
 end)
-nnoremap("<leader>bh", function()
+nnoremap("<leader>k", function()
   vim.lsp.buf.hover()
 end)
-nnoremap("<leader>bd", function()
+nnoremap("<leader>gd", function()
   vim.lsp.buf.definition()
 end)
-nnoremap("<leader>bi", function()
+nnoremap("<leader>i", function()
   vim.lsp.buf.implementation()
 end)
-nnoremap("<leader>ba", function()
+nnoremap("<leader>a", function()
   vim.lsp.buf.code_action()
 end)
 
@@ -55,8 +53,8 @@ nnoremap("<leader>tw", "<cmd>TroubleToggle workspace_diagnostics<CR>")
 nnoremap("<leader>tr", "<cmd>TroubleToggle lsp_references<CR>")
 nnoremap("<leader>tq", "<cmd>TroubleToggle quickfix<CR>")
 
-nnoremap("<leader>yt", "<cmd>terminal yarn test:unit % -u<CR>")
-nnoremap("<leader>yj", "<cmd>terminal yarn test:unit -u<CR>")
+nnoremap("<leader>yt", "<cmd>terminal yarn test % -u<CR>")
+nnoremap("<leader>yj", "<cmd>terminal yarn test -u<CR>")
 
 nnoremap("<leader>y", '"*y<cr>')
 vnoremap("<leader>y", '"*y<cr>')
@@ -64,21 +62,9 @@ vnoremap("<leader>y", '"*y<cr>')
 nnoremap("<BS>", '"_d')
 vnoremap("<BS>", '"_d')
 
-nnoremap("<leader>yj", "<cmd>terminal yarn test:unit -u<CR>")
 nnoremap("<leader>nt", "<cmd>NvimTreeToggle<CR>")
 nnoremap("<leader>nr", "<cmd>NvimTreeRefresh<CR>")
 nnoremap("<leader>nf", "<cmd>NvimTreeFindFile<CR>")
-
--- Autoclose
-inoremap('"', '""<left>')
-inoremap("'", "''<left>")
-inoremap("(", "()<left>")
-inoremap("[", "[]<left>")
-inoremap("{", "{}<left>")
-
-nnoremap("<leader>w", "<cmd>bd<cr>")
-nnoremap("<leader>]", "<cmd>BufferLineCycleNext<CR>")
-nnoremap("<leader>[", "<cmd>BufferLineCyclePrev<CR>")
 
 nnoremap("<Tab>", ">>")
 vnoremap("<Tab>", ">gv")

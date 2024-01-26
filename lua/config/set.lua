@@ -1,5 +1,5 @@
 vim.opt.termguicolors = true
-vim.cmd("colorscheme base16-gruvbox-dark-hard")
+vim.cmd("colorscheme base16-ayu-dark")
 
 vim.opt.updatetime = 50
 
@@ -34,7 +34,6 @@ vim.cmd('set nohlsearch')
 local augroup = vim.api.nvim_create_augroup
 local autocmd = vim.api.nvim_create_autocmd
 local yank_group = augroup('HighlightYank', {})
-local fizz_group = augroup('Fizz', {})
 
 autocmd('TextYankPost', {
     group = yank_group,
@@ -47,10 +46,3 @@ autocmd('TextYankPost', {
     end,
 })
 
-autocmd('BufRead,BufNewFile', {
-    group = fizz_group,
-    pattern = '*.fizz',
-    callback = function()
-        vim.cmd('set syntax=javascript')
-    end,
-})

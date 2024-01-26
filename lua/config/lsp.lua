@@ -11,63 +11,69 @@ local lua_config = require("config.lua")
 local volar_init_options = require("config.volar")
 
 local signs = {
-	{ name = "DiagnosticSignError", text = "" },
-	{ name = "DiagnosticSignWarn", text = "" },
-	{ name = "DiagnosticSignHint", text = "" },
-	{ name = "DiagnosticSignInfo", text = "" },
+  { name = "DiagnosticSignError", text = "" },
+  { name = "DiagnosticSignWarn", text = "" },
+  { name = "DiagnosticSignHint", text = "" },
+  { name = "DiagnosticSignInfo", text = "" },
 }
 
 for _, sign in ipairs(signs) do
-	vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
+  vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
 end
 
 local sources = {
-	null_ls.builtins.diagnostics.eslint_d,
-	null_ls.builtins.formatting.eslint_d,
-	null_ls.builtins.code_actions.eslint_d,
-	null_ls.builtins.formatting.stylua,
+  null_ls.builtins.diagnostics.eslint_d,
+  null_ls.builtins.formatting.eslint_d,
+  null_ls.builtins.code_actions.eslint_d,
+  null_ls.builtins.formatting.stylua,
+  null_ls.builtins.formatting.clang_format,
 }
 
 mason.setup()
 mason_lsp.setup({
-	ensure_installed = {
+  ensure_installed = {
     "tsserver",
-		"volar",
-		"lua_ls",
-		"tailwindcss",
-		"solargraph",
-		"emmet_ls",
-		"gopls",
-		"rust_analyzer",
-		"jsonls",
-	},
+    "volar",
+    "lua_ls",
+    "tailwindcss",
+    "ruby_ls",
+    "emmet_ls",
+    "gopls",
+    "rust_analyzer",
+    "jsonls",
+    "clangd"
+  },
 })
 
 null_ls.setup({
-	sources = sources,
+  sources = sources,
 })
 
 lspconfig.tsserver.setup({
-	capabilities = capabilities,
+  capabilities = capabilities,
+})
+
+lspconfig.clangd.setup({
+  capabilities = capabilities,
 })
 
 lspconfig["rust_analyzer"].setup({
-	capabilities = capabilities,
+  capabilities = capabilities,
 })
 
 lspconfig.tailwindcss.setup({
-	capabilities = capabilities,
+  capabilities = capabilities,
 })
 lspconfig.jsonls.setup({
-	capabilities = capabilities,
+  capabilities = capabilities,
 })
 
 lspconfig.volar.setup({
-	capabilities = capabilities,
-	filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue", "json" },
+  capabilities = capabilities,
+  filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue", "json" },
   root_dir = lspconfig.util.root_pattern('vite.config.js'),
-	init_options = volar_init_options,
-  on_attach = function (client)
+  init_options = volar_init_options,
+  on_attach = function(client)
     client.server_capabilities.documentFormattingProvider = false
     client.server_capabilities.documentRangeFormattingProvider = false
   end
@@ -76,32 +82,32 @@ lspconfig.volar.setup({
 lspconfig.lua_ls.setup(lua_config.config)
 
 lspconfig.solargraph.setup({
-	capabilities = capabilities,
+  capabilities = capabilities,
 })
 
 configs.emmet_ls = {
-	default_config = {
-		cmd = { "emmet-ls", "--stdio" },
-		filetypes = { "html", "css", "blade", "eruby", "erb", "gotmpl" },
-		root_dir = function()
-			return vim.loop.cwd()
-		end,
-		settings = {},
-	},
+  default_config = {
+    cmd = { "emmet-ls", "--stdio" },
+    filetypes = { "html", "css", "blade", "eruby", "erb", "gotmpl" },
+    root_dir = function()
+      return vim.loop.cwd()
+    end,
+    settings = {},
+  },
 }
 
 lspconfig.emmet_ls.setup({ capabilities = capabilities })
 
 lspconfig.gopls.setup({
-	capabilities = capabilities,
-	cmd = { "gopls", "serve" },
+  capabilities = capabilities,
+  cmd = { "gopls", "serve" },
   filetypes = { "go", "gomod", "gowork", "gotmpl" },
-	settings = {
-		gopls = {
-			analyses = {
-				unusedparams = true,
-			},
-			staticcheck = true,
-		},
-	},
+  settings = {
+    gopls = {
+      analyses = {
+        unusedparams = true,
+      },
+      staticcheck = true,
+    },
+  },
 })
