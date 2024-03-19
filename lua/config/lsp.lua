@@ -4,6 +4,7 @@ local lspconfig = require("lspconfig")
 local configs = require("lspconfig.configs")
 
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
+local mason_null = require("mason-null-ls")
 local null_ls = require("null-ls")
 
 local lua_config = require("config.lua")
@@ -21,14 +22,6 @@ for _, sign in ipairs(signs) do
   vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
 end
 
-local sources = {
-  null_ls.builtins.diagnostics.eslint_d,
-  null_ls.builtins.formatting.eslint_d,
-  null_ls.builtins.code_actions.eslint_d,
-  null_ls.builtins.formatting.stylua,
-  null_ls.builtins.formatting.clang_format,
-}
-
 mason.setup()
 mason_lsp.setup({
   ensure_installed = {
@@ -41,15 +34,31 @@ mason_lsp.setup({
     "gopls",
     "rust_analyzer",
     "jsonls",
-    "clangd"
+    "clangd",
+    "svelte",
+    "zls"
   },
 })
-
-null_ls.setup({
-  sources = sources,
+mason_null.setup({
+  ensure_installed = {
+    "eslint_d",
+    "prettierd",
+    "stylua",
+    "clang_format",
+  },
+  handlers = {}
 })
+null_ls.setup({})
 
 lspconfig.tsserver.setup({
+  capabilities = capabilities,
+})
+
+lspconfig.svelte.setup({
+  capabilities = capabilities,
+})
+
+lspconfig.zls.setup({
   capabilities = capabilities,
 })
 
@@ -110,4 +119,33 @@ lspconfig.gopls.setup({
       staticcheck = true,
     },
   },
+})
+
+vim.api.nvim_create_autocmd('LspAttach', {
+  group = vim.api.nvim_create_augroup('UserLspConfig', {}),
+  callback = function(ev)
+    -- Enable completion triggered by <c-x><c-o>
+    vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
+
+    -- Buffer local mappings.
+    -- See `:help vim.lsp.*` for documentation on any of the below functions
+    local opts = { buffer = ev.buf }
+    vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
+    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
+    vim.keymap.set('n', '<leader>k', vim.lsp.buf.hover, opts)
+    vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
+    vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
+    vim.keymap.set('n', '<leader>wa', vim.lsp.buf.add_workspace_folder, opts)
+    vim.keymap.set('n', '<leader>wr', vim.lsp.buf.remove_workspace_folder, opts)
+    vim.keymap.set('n', '<leader>wl', function()
+      print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+    end, opts)
+    vim.keymap.set('n', '<leader>D', vim.lsp.buf.type_definition, opts)
+    vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts)
+    vim.keymap.set({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, opts)
+    vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
+    vim.keymap.set('n', '<leader>bf', function()
+      vim.lsp.buf.format { async = true }
+    end, opts)
+  end,
 })

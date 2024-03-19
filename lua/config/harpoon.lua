@@ -5,7 +5,7 @@ local mark = require("harpoon.mark")
 local ui = require("harpoon.ui")
 
 nnoremap("<leader>a", mark.add_file)
-nnoremap("<C-i>", ui.toggle_quick_menu)
+nnoremap("<leader>i", ui.toggle_quick_menu)
 
 nnoremap("<C-h>", function()
   ui.nav_file(1)

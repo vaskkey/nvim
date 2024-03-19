@@ -16,8 +16,20 @@ return {
   { "neovim/nvim-lspconfig" },
   { "hrsh7th/cmp-nvim-lsp" },
   { "hrsh7th/cmp-buffer" },
-  { "jose-elias-alvarez/null-ls.nvim",  dependencies = { "nvim-lua/plenary.nvim" } },
-  { "L3MON4D3/LuaSnip" },
+  { "nvimtools/none-ls.nvim" },
+  {
+    "jay-babu/mason-null-ls.nvim",
+    event = { "BufReadPre", "BufNewFile" },
+    dependencies = {
+      "williamboman/mason.nvim",
+      "nvimtools/none-ls.nvim",
+    }
+  },
+  {
+    "L3MON4D3/LuaSnip",
+    version = "v2.*",
+    build = "make install_jsregexp"
+  },
   { "saadparwaiz1/cmp_luasnip" },
   { "hrsh7th/nvim-cmp" },
   { "onsails/lspkind-nvim" },
@@ -26,7 +38,7 @@ return {
   { "folke/trouble.nvim" },
 
   --Git
-  { "lewis6991/gitsigns.nvim",          dependencies = { "nvim-lua/plenary.nvim" } },
+  { "lewis6991/gitsigns.nvim", dependencies = { "nvim-lua/plenary.nvim" } },
 
   --File tree
   {
@@ -58,5 +70,8 @@ return {
   {
     "numToStr/Comment.nvim",
     opts = {}
-  }
+  },
+
+  -- Copilot
+  { "github/copilot.vim" }
 }
